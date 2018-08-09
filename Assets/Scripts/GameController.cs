@@ -6,123 +6,94 @@ using UnityEngine.Events;
 
 public class GameController : UtilComponent {
 
-	//public Force force;
 
-	public CountDownComponent cdCarib;
-	public CountDownComponent cdCountDown;
+	//public CountDownComponent cdCountDown;
 
-    [SerializeField] private Context context;
-    [SerializeField] private GameObject objMeterCanvas;
-    [SerializeField] private GameObject objAvatarCanvas;
+    private Context _context;
+    public Context context{
+        get{
+            if(this._context == null){
+                this._context = new Context();
+            }
+            return this._context;
+        }
+    }
 
-    //[SerializeField] private GazeButtonInput[] btnsFinish;
 
 	public enum STATUS_ENUM : int{
-		NON,
-		OPEN,
-		CARIB,
-		PREPARE,
+		START,
 		COUNT,
 		PLAY,
         FINISH
 	}
-	private STATUS_ENUM currentStatus = STATUS_ENUM.NON;
-
-	[SerializeField] GameObject objOpen;
-	[SerializeField] GameObject objCarib;
-	[SerializeField] GameObject objPrepare;
-	[SerializeField] GameObject objCount;
+    private STATUS_ENUM currentStatus = STATUS_ENUM.COUNT;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AnswerObjectController answerController;
+    [SerializeField] private Text curretAnswer;
+    [SerializeField] private Text numMinus;
+    [SerializeField] private Text correctCount;
 
 
 	// Use this for initialization
-	void Start () {
-		SetActive(this.objOpen, true);
-		SetActive(this.objCarib, false);
-		SetActive(this.objPrepare, false);
-		SetActive(this.objCount, false);
-        SetActive(this.objMeterCanvas, true);
-        SetActive(this.objAvatarCanvas, false);
-		this.currentStatus = STATUS_ENUM.OPEN;
-        //foreach(GazeButtonInput btn in btnsFinish){
-        //    btn.m_OnClickGaze.AddListener(this.ClickedFinish);
-        //}
+	private void Start () {
+        this.currentStatus = STATUS_ENUM.COUNT;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	private void Update () {
 		switch(this.currentStatus){
-		case STATUS_ENUM.OPEN:
-			this.UpdateOpen();
-			break;
-		case STATUS_ENUM.CARIB:
-			this.UpdateCarib();
-			break;
-		case STATUS_ENUM.PREPARE:
-			this.UpdatePrepare();
-			break;
-		case STATUS_ENUM.COUNT:
-			this.UpdateCount();
-			break;
-		case STATUS_ENUM.PLAY:
-			this.UpdatePlay();
-			break;
-        case STATUS_ENUM.FINISH:
-            this.UpdateFinish();
-            break;
+            case STATUS_ENUM.START:
+                this.UpdateStart();
+    			break;
+    		case STATUS_ENUM.COUNT:
+    			this.UpdateCount();
+    			break;
+    		case STATUS_ENUM.PLAY:
+    			this.UpdatePlay();
+    			break;
+            case STATUS_ENUM.FINISH:
+                this.UpdateFinish();
+                break;
 		}
 	}
-		
+	
 
-	private void UpdateOpen(){
-	}
-
-	public void ClickSetButton(){
-		this.currentStatus = STATUS_ENUM.CARIB;
-		SetActive(this.objOpen, false);
-		SetActive(this.objCarib, true);
-		this.cdCarib.Initialize(0f, 
-			()=>{
-				this.currentStatus = STATUS_ENUM.PREPARE;
-				SetActive(this.objCarib, false);
-				SetActive(this.objPrepare, true);
-			},
-			false);
-	}
-
-	private void UpdateCarib(){
-		
-	}
-
-	private void UpdatePrepare(){
+	private void UpdateStart(){
 	}
 
 	public void ClickStartButton(){
 		this.currentStatus = STATUS_ENUM.COUNT;
-		SetActive(this.objPrepare, false);
-		SetActive(this.objCount, true);
 	}
 
 	private void UpdateCount(){
-		this.cdCountDown.Initialize(3f, ()=>{
-			this.currentStatus = STATUS_ENUM.PLAY;
-            //this.force.isPlay = true;
-            this.context.isStart = true;
-            this.audioSource.PlayOneShot(this.audioClip);
-		},
-		true);
+		//this.cdCountDown.Init(3f, ()=>
+        //{
+            this.currentStatus = STATUS_ENUM.PLAY;
+        this.context.Init();
+            this.context.StartPlay();
+        this.answerController.Init(this.context);
+        this.answerController.SetAnswers();
+            if (this.audioSource != null)
+            {
+                this.audioSource.PlayOneShot(this.audioClip);
+            }
+
+		//},
+		//true);
 
 	}
 
 	private void UpdatePlay(){
-        if(this.context.isFinish){
+        if(!this.context.isPlay){
             this.currentStatus = STATUS_ENUM.FINISH;
-            SetActive(this.objMeterCanvas, false);
-            SetActive(this.objAvatarCanvas, true);
-            //this.force.isPlay = false;
+            return;
         }
+        SetLabel(this.curretAnswer, this.context.currentAnswer.ToString());
+        SetLabel(this.numMinus, this.context.numMinus.ToString());
+        SetLabel(this.correctCount, this.context.correctCount.ToString());
+        //this.context.SetLeftTime(Time.deltaTime);
 	}
 
     private void UpdateFinish()

@@ -1,92 +1,93 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using System;
+﻿using System;
 
-public class Context : UtilComponent {
+public class Context {
 
-    [NonSerialized] public bool isStart = false;
-    [NonSerialized] public bool isFinish = false;
+    //private const float PLAY_TIME = 60f;
+    private const int FIRST_NUM = 100;
+    private const int CHOICE_COUNT = 3;
 
-    [NonSerialized] public float time = 60f;
-    [NonSerialized] public float speed = 0f;
-    [NonSerialized] public float distance = 0f;
-    [NonSerialized] public float calorie = 0f;
+    public int currentAnswer { get; private set; }
+    public int numMinus { get; private set; }
+    public int nextAnswer { get; private set; }
+    public int[] nextAnswers { get; private set; }
 
-    private int flameCount = 0;
-    private float sumSpeed = 0f;
+    public int correctCount = 0;
 
-    //[SerializeField] Force force;
-    [SerializeField] GameObject player;
-   
-    [SerializeField] Text[] txtCurrentTime;
-    [SerializeField] Text[] txtCurrentSpeed;
-    [SerializeField] Text[] txtDistance;
-    [SerializeField] Text[] txtCalorie;
-    [SerializeField] Text[] txtSumTime;
-    [SerializeField] Text[] txtAveSpeed;
+    [NonSerialized] public bool isPlay = false;
+
+    //[NonSerialized] public float leftTime = PLAY_TIME;
+    [NonSerialized] public float leftNum = FIRST_NUM;
+
+
+	public void Init()
+	{
+        this.currentAnswer = FIRST_NUM;
+        this.nextAnswer = this.currentAnswer;
+	}
 
 	// Use this for initialization
-	void Start () {
-        this.UpdateTime();
-        this.UpdateSpeed();
-        this.UpdateDistance();
-        this.UpdateCalorie();
-
-        TimeSpan ts = new TimeSpan(0, 0, Mathf.RoundToInt(this.time));
-        SetLabel(this.txtCurrentTime, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
+	public void StartPlay () {
+        this.isPlay = true;
+        this.SetNextAnswers();
+        //TimeSpan ts = new TimeSpan(0, 0, Mathf.RoundToInt(this.leftTime));
+        //SetLabel(this.txtCurrentTime, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
     }
 
-    // Update is called once per frame
-    void Update()
+
+        
+    public void SetNextAnswers()
     {
-        if (this.isStart && !this.isFinish) {
-            this.flameCount++;
+        this.currentAnswer = this.nextAnswer;
 
-            this.UpdateTime();
-            this.UpdateSpeed();
-            this.UpdateDistance();
-            this.UpdateCalorie();
+        int random1 = UnityEngine.Random.Range(1, 10);
+        int answer1 = this.currentAnswer - random1;
 
+        int random2 = random1;
+        while (random2 == random1)
+        {
+            random2 = UnityEngine.Random.Range(1, 10);
         }
-	}
-		
+        int answer2 = this.currentAnswer - random2;
 
-	private void UpdateTime(){
-        this.time -= Time.deltaTime;
-        TimeSpan ts = new TimeSpan(0,0,Mathf.RoundToInt(this.time));
-        SetLabel(this.txtCurrentTime, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
-
-        if(time<0f){
-            this.isFinish = true;
+        int random3 = random2;
+        while (random3 == random1 || random3 == random2)
+        {
+            random3 = UnityEngine.Random.Range(1, 10);
         }
-   	}
+        int answer3 = this.currentAnswer - random3;
 
 
-    private void UpdateSpeed(){
-        //this.speed = this.force.rigidBody.velocity.z;
-        SetLabel(this.txtCurrentSpeed, this.speed.ToString("f1"));
+        int[] randoms = new int[] { random1, random2, random3 };
+        int correctAnswer = UnityEngine.Random.Range(0, 3);
 
-        this.sumSpeed += this.speed;
-        float aveSpeed = this.sumSpeed / this.flameCount;
-
-        SetLabel(this.txtAveSpeed, aveSpeed.ToString("f1"));
-
-	}
-
-	private void UpdateDistance(){
-        this.distance = (this.player.transform.localPosition.z / 10f) / 1000f;
-        SetLabel(this.txtDistance, this.distance.ToString("f1"));
-	}
+        this.numMinus = randoms[correctAnswer];
+        this.nextAnswers = new int[] { answer1, answer2, answer3 };
+        this.nextAnswer = this.nextAnswers[correctAnswer];
+    }
 
 
-	private void UpdateCalorie(){
-        float mets = this.speed / 3f;
-        this.calorie += 70f * mets * (Time.deltaTime / 3600f) * 1.05f;
-        SetLabel(this.txtCalorie, this.calorie.ToString("f1"));
-	}
 
+    
+    public bool CheckAnswer(int answer)
+    {
+        bool result = false;
+        if(answer == this.nextAnswer){
+            this.correctCount++;
+            result = true;
+        }
+        return result;
+    }
+
+
+    //public void SetLeftTime(float leftTime){
+    //    this.leftTime -= leftTime;
+    //    //TimeSpan ts = new TimeSpan(0,0,Mathf.RoundToInt(this.leftTime));
+    //    //SetLabel(this.txtCurrentTime, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
+
+    //    if(leftTime<0f){
+    //        this.isPlay = false;
+    //    }
+   	//}
 
 
 }
