@@ -11,6 +11,8 @@ public class EventController : UtilComponent {
     [SerializeField] private Text txtHover;
 
     private System.Action<string> callbackCut;
+    private bool isEnter = false;
+    private string strHoverObjectName;
 
 
     public void Init(System.Action<string> callback){
@@ -20,16 +22,21 @@ public class EventController : UtilComponent {
 
     public void OnHoverEnter(Transform t)
     {
-        //Debug.Log("OnHoverEnter");
+        Debug.Log("OnHoverEnter");
         SetLabel(this.txtEnter, t.name);
-        if(this.callbackCut != null){
-            this.callbackCut(t.name);
-        }
+        this.strHoverObjectName = t.name;
+        this.isEnter = true;
+
     }
     public void OnHoverExit(Transform t)
     {
-        //Debug.Log("OnHoverExit");
+        Debug.Log("OnHoverExit");
         SetLabel(this.txtExit, t.position.y.ToString());
+        if (this.callbackCut != null && this.strHoverObjectName == t.name && this.isEnter)
+        {
+            this.callbackCut(t.name);
+        }
+        this.isEnter = false;
 
     }
     public void OnHover(Transform t)

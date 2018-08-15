@@ -66,7 +66,8 @@ public class GameController : UtilComponent {
             this.startObject.WasCut();
             StartCoroutine(this.SetCountDown());
         }else {
-            this.answerController.Answer(objName);
+            if (this.currentStatus != STATUS_ENUM.PLAY) return;
+           this.answerController.Answer(objName);
         }
     }
 

@@ -32,6 +32,8 @@ public class AnswerObjectController : UtilComponent
 
 
     public void Answer(string objName){
+        Debug.Log(objName);
+        if (!this.enableInput) return;
         switch(objName){
             case "CubeUp":
                 this.enableInput = false;
@@ -75,6 +77,7 @@ public class AnswerObjectController : UtilComponent
         int answer = this.answers[num].answer;
         this.answers[num].WasCut();
         bool result = this.context.CheckAnswer(answer);
+        Debug.Log("CheckAnswer！！");
         StartCoroutine(WaitNextObj());
     }
 
