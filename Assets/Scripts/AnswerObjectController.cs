@@ -16,6 +16,10 @@ public class AnswerObjectController : UtilComponent
 	public void Init(Context context)
 	{
         this.context = context;
+        for (int i = 0; i < this.answers.Length; i++)
+        {
+            this.answers[i].Init();
+        }
 	}
 
 	public void SetAnswers()
@@ -26,11 +30,30 @@ public class AnswerObjectController : UtilComponent
         }
     }
 
+
+    public void Answer(string objName){
+        switch(objName){
+            case "CubeUp":
+                this.enableInput = false;
+                this.CheckAnswer(0);
+                break;
+            case "CubeLeft":
+                this.enableInput = false;
+                this.CheckAnswer(1);
+                break;
+            case "CubeRight":
+                this.enableInput = false;
+                this.CheckAnswer(2);
+                break;
+        }
+
+    }
+
  
     private void Update()
     {
         if (!this.enableInput) return;
-        Debug.Log(Input.GetKey(KeyCode.A));
+        //Debug.Log(Input.GetKey(KeyCode.A));
         if (Input.GetKey(KeyCode.A))
         {
             this.enableInput = false;
@@ -50,6 +73,7 @@ public class AnswerObjectController : UtilComponent
 
     private void CheckAnswer(int num){
         int answer = this.answers[num].answer;
+        this.answers[num].WasCut();
         bool result = this.context.CheckAnswer(answer);
         StartCoroutine(WaitNextObj());
     }
@@ -57,6 +81,8 @@ public class AnswerObjectController : UtilComponent
 
     IEnumerator WaitNextObj()
     {
+        yield return new WaitForSeconds(2);
+
         for (int i = 0; i < this.answers.Length; i++)
         {
             SetActive(this.answers[i].gameObject, false);

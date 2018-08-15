@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class AnswerObject : UtilComponent {
+public class AnswerObject : StartObject {
 
     [SerializeField] private Text txtAnswer;
 
@@ -13,6 +13,8 @@ public class AnswerObject : UtilComponent {
     public void SetAnswer(int num){
         SetLabel(this.txtAnswer, num.ToString());
         this.answer = num;
+        SetActive(this.objCube, true);
+        SetActive(this.objAnimation, false); 
     }
 
 

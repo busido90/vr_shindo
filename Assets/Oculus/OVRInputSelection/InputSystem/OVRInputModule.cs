@@ -121,7 +121,7 @@ namespace ControllerSelection
         // UseMouse
         #region StandaloneInputModule code
         
-         private float m_NextAction;
+        private float m_NextAction;
 
         private Vector2 m_LastMousePosition;
         private Vector2 m_MousePosition;

@@ -26,7 +26,17 @@ public class GameController : UtilComponent {
 		PLAY,
         FINISH
 	}
-    private STATUS_ENUM currentStatus = STATUS_ENUM.COUNT;
+    private STATUS_ENUM currentStatus = STATUS_ENUM.START;
+
+    [SerializeField] private StartObject startObject;
+    [SerializeField] private EventController eventController;
+
+    [SerializeField] private CountDownComponent cdComponent;
+
+    [SerializeField] private GameObject objStart;
+    [SerializeField] private GameObject objCountDown;
+    [SerializeField] private GameObject objPlay;
+
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
@@ -38,8 +48,39 @@ public class GameController : UtilComponent {
 
 	// Use this for initialization
 	private void Start () {
-        this.currentStatus = STATUS_ENUM.COUNT;
+        this.currentStatus = STATUS_ENUM.START;
+
+        this.eventController.Init(this.CallbackCut);
+        this.answerController.Init(this.context);
+
+        SetActive(this.objStart, true);
+        SetActive(this.objCountDown, false);
+        SetActive(this.objPlay, false);
+
 	}
+
+    private void CallbackCut(string objName){
+        if(objName == "CubeStart"){
+            this.currentStatus = STATUS_ENUM.COUNT;
+            Debug.Log("CubeStart");
+            this.startObject.WasCut();
+            StartCoroutine(this.SetCountDown());
+        }else {
+            this.answerController.Answer(objName);
+        }
+    }
+
+
+    private IEnumerator SetCountDown(){
+        Debug.Log("CountDown");
+
+        yield return new WaitForSeconds(2);
+
+        this.cdComponent.Init(3.0f, this.FinishCountDown, false);
+        SetActive(this.objStart, false);
+        SetActive(this.objCountDown, true);
+        SetActive(this.objPlay, false);
+    }
 	
 	// Update is called once per frame
 	private void Update () {
@@ -48,7 +89,7 @@ public class GameController : UtilComponent {
                 this.UpdateStart();
     			break;
     		case STATUS_ENUM.COUNT:
-    			this.UpdateCount();
+    			//this.UpdateCount();
     			break;
     		case STATUS_ENUM.PLAY:
     			this.UpdatePlay();
@@ -63,22 +104,24 @@ public class GameController : UtilComponent {
 	private void UpdateStart(){
 	}
 
-	public void ClickStartButton(){
-		this.currentStatus = STATUS_ENUM.COUNT;
-	}
 
-	private void UpdateCount(){
+	private void FinishCountDown(){
 		//this.cdCountDown.Init(3f, ()=>
         //{
-            this.currentStatus = STATUS_ENUM.PLAY;
+        this.currentStatus = STATUS_ENUM.PLAY;
         this.context.Init();
-            this.context.StartPlay();
-        this.answerController.Init(this.context);
+        this.context.StartPlay();
+        //this.answerController.Init(this.context);
         this.answerController.SetAnswers();
-            if (this.audioSource != null)
-            {
-                this.audioSource.PlayOneShot(this.audioClip);
-            }
+
+
+        SetActive(this.objStart, false);
+        SetActive(this.objCountDown, false);
+        SetActive(this.objPlay, true);
+        //if (this.audioSource != null)
+        //{
+        //    this.audioSource.PlayOneShot(this.audioClip);
+        //}
 
 		//},
 		//true);

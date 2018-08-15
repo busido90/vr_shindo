@@ -87,20 +87,44 @@ namespace ControllerSelection {
         }
 
         public void SetPointerVisibility() {
-            if (trackingSpace != null && activeController != OVRInput.Controller.None) {
-                if (linePointer != null) {
+            //if (trackingSpace != null && activeController != OVRInput.Controller.None) {
+            //    if (linePointer != null) {
+            //        linePointer.enabled = true;
+            //    }
+            //    if (gazePointer != null) {
+            //        gazePointer.gameObject.SetActive(false);
+            //    }
+            //}
+            //else {
+            //    if (linePointer != null) {
+            //        linePointer.enabled = false;
+            //    }
+            //    if (gazePointer != null) {
+            //        gazePointer.gameObject.SetActive(true);
+            //    }
+            //}
+            if (trackingSpace != null && activeController != OVRInput.Controller.None)
+            {
+                if (linePointer != null)
+                {
                     linePointer.enabled = true;
                 }
-                if (gazePointer != null) {
-                    gazePointer.gameObject.SetActive(false);
+                if (gazePointer != null)
+                {
+                    //gazePointer.gameObject.SetActive(false);
+                    gazePointer.gameObject.SetActive(true);
                 }
             }
-            else {
-                if (linePointer != null) {
+            else
+            {
+                if (linePointer != null)
+                {
                     linePointer.enabled = false;
                 }
-                if (gazePointer != null) {
-                    gazePointer.gameObject.SetActive(true);
+                if (gazePointer != null)
+                {
+                    //gazePointer.gameObject.SetActive(true);
+                    gazePointer.gameObject.SetActive(false);
                 }
             }
         }
