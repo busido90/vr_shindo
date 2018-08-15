@@ -25,18 +25,21 @@ public class Context {
         this.nextAnswer = this.currentAnswer;
 	}
 
-	// Use this for initialization
-	public void StartPlay () {
+    // Use this for initialization
+    public void StartPlay()
+    {
         this.isPlay = true;
         this.SetNextAnswers();
         //TimeSpan ts = new TimeSpan(0, 0, Mathf.RoundToInt(this.leftTime));
         //SetLabel(this.txtCurrentTime, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
     }
-
-
         
     public void SetNextAnswers()
     {
+        if(this.nextAnswer < 0){
+            this.isPlay = false;
+        }
+
         this.currentAnswer = this.nextAnswer;
 
         int random1 = UnityEngine.Random.Range(1, 10);
