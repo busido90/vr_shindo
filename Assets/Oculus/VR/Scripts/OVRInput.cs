@@ -409,14 +409,15 @@ public static class OVRInput
 	{
 		switch (controllerType)
 		{
-			case Controller.LTouch:
-			case Controller.LTrackedRemote:
-                return OVRPlugin.GetNodePose(OVRPlugin.Node.HandLeft, stepType).ToOVRPose().position;
-            case Controller.RTouch:
-			case Controller.RTrackedRemote:
-                return OVRPlugin.GetNodePose(OVRPlugin.Node.HandRight, stepType).ToOVRPose().position;
+			//case Controller.LTouch:
+			//case Controller.LTrackedRemote:
+   //             return OVRPlugin.GetNodePose(OVRPlugin.Node.HandLeft, stepType).ToOVRPose().position;
+   //         case Controller.RTouch:
+			//case Controller.RTrackedRemote:
+                //return OVRPlugin.GetNodePose(OVRPlugin.Node.HandRight, stepType).ToOVRPose().position;
             default:
-				return Vector3.zero;
+                return new Vector3(-0f, -0.5058779f, 0.7f);
+				//return Vector3.zero;
 		}
 	}
 
