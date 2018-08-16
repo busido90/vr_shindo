@@ -45,6 +45,14 @@ public class GameController : UtilComponent {
     [SerializeField] private Text numMinus;
     [SerializeField] private Text correctCount;
 
+    [SerializeField] private SordCotroller sordCotroller;
+
+
+    [SerializeField] private Text x;
+    [SerializeField] private Text y;
+    [SerializeField] private Text z;
+
+
 
 	// Use this for initialization
 	private void Start () {
@@ -52,6 +60,7 @@ public class GameController : UtilComponent {
 
         this.eventController.Init(this.CallbackCut);
         this.answerController.Init(this.context);
+        this.sordCotroller.Init(this.context);
 
         SetActive(this.objStart, true);
         SetActive(this.objCountDown, false);
@@ -62,7 +71,7 @@ public class GameController : UtilComponent {
     private void CallbackCut(string objName){
         if(objName == "CubeStart"){
             this.currentStatus = STATUS_ENUM.COUNT;
-            Debug.Log("CubeStart");
+            //Debug.Log("CubeStart");
             this.startObject.WasCut();
             StartCoroutine(this.SetCountDown());
         }else {
@@ -73,7 +82,7 @@ public class GameController : UtilComponent {
 
 
     private IEnumerator SetCountDown(){
-        Debug.Log("CountDown");
+        //Debug.Log("CountDown");
 
         yield return new WaitForSeconds(2);
 
@@ -85,7 +94,15 @@ public class GameController : UtilComponent {
 	
 	// Update is called once per frame
 	private void Update () {
-		switch(this.currentStatus){
+        OVRInput.Controller activeController = OVRInput.GetActiveController();
+        Quaternion rot = OVRInput.GetLocalControllerRotation(activeController);
+        SetLabel(this.x, rot.eulerAngles.x.ToString());
+        SetLabel(this.y, rot.eulerAngles.y.ToString());
+        SetLabel(this.z, rot.eulerAngles.z.ToString());
+        Debug.Log("x:" + this.x.text);
+        Debug.Log("y:" + this.y.text);
+        Debug.Log("z:" + this.z.text);
+        switch(this.currentStatus){
             case STATUS_ENUM.START:
                 this.UpdateStart();
     			break;

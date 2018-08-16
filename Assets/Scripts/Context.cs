@@ -18,6 +18,8 @@ public class Context {
     //[NonSerialized] public float leftTime = PLAY_TIME;
     [NonSerialized] public float leftNum = FIRST_NUM;
 
+    public bool isLongSord { get; private set; }
+
 
 	public void Init()
 	{
@@ -76,6 +78,12 @@ public class Context {
             result = true;
         }
         return result;
+    }
+
+
+    public void SetLongSord(bool isLong){
+
+        this.isLongSord = isLong;
     }
 
 
