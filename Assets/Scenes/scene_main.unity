@@ -5396,7 +5396,7 @@ MonoBehaviour:
   trackingSpace: {fileID: 809029567}
   linePointer: {fileID: 1296532921}
   gazePointer: {fileID: 879327008}
-  rayDrawDistance: 2
+  rayDrawDistance: 500
   gazeDrawDistance: 3
   activeController: 0
 --- !u!1 &1302025746
@@ -7800,7 +7800,7 @@ MonoBehaviour:
   excludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  raycastDistance: 2
+  raycastDistance: 500
   onHoverEnter:
     m_PersistentCalls:
       m_Calls:
