@@ -43,7 +43,7 @@ namespace ControllerSelection {
         [Tooltip("Layers to exclude from raycast")]
         public LayerMask excludeLayers;
         [Tooltip("Maximum raycast distance")]
-        public float raycastDistance = 500;
+        public float raycastDistance = 2;
 
         [Header("Hover Callbacks")]
         public OVRRawRaycaster.HoverCallback onHoverEnter;
