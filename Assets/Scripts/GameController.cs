@@ -24,7 +24,8 @@ public class GameController : UtilComponent {
 		START,
 		COUNT,
 		PLAY,
-        FINISH
+        FINISH,
+        SHOW_RESLUT
 	}
     private STATUS_ENUM currentStatus = STATUS_ENUM.START;
 
@@ -53,6 +54,7 @@ public class GameController : UtilComponent {
     [SerializeField] private Text z;
 
 
+    [SerializeField] private ResultModalPresenter resultModal;
 
 	// Use this for initialization
 	private void Start () {
@@ -115,6 +117,9 @@ public class GameController : UtilComponent {
             case STATUS_ENUM.FINISH:
                 this.UpdateFinish();
                 break;
+            case STATUS_ENUM.SHOW_RESLUT:
+                this.UpdateShowResult();
+                break;
 		}
 	}
 	
@@ -159,7 +164,13 @@ public class GameController : UtilComponent {
 
     private void UpdateFinish()
     {
+        ResultModalModel model = new ResultModalModel(this.context.correctCount, 70f);
+        resultModal.Show(model);
+        this.currentStatus = STATUS_ENUM.SHOW_RESLUT;
+    }
 
+    private void UpdateShowResult(){
+        
     }
 
 
