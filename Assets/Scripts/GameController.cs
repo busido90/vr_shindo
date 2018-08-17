@@ -166,7 +166,8 @@ public class GameController : UtilComponent {
     private void UpdateFinish()
     {
         this.context.WatchStop();
-        ResultModalModel model = new ResultModalModel(this.context.correctCount, this.context.playTime);
+        ResultModalModel model = 
+            new ResultModalModel(this.context.correctCount, this.context.quizCount, this.context.playTime);
         resultModal.Show(model);
         this.currentStatus = STATUS_ENUM.SHOW_RESLUT;
     }
