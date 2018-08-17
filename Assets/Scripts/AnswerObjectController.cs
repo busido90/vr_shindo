@@ -93,11 +93,16 @@ public class AnswerObjectController : UtilComponent
             SetActive(this.answers[i].gameObject, false);
         }
         yield return new WaitForSeconds(2);
-        for (int i = 0; i < this.answers.Length; i++)
-        {
-            SetActive(this.answers[i].gameObject, true);
+
+        if (this.context.currentAnswer >= 0){
+            for (int i = 0; i < this.answers.Length; i++)
+            {
+                SetActive(this.answers[i].gameObject, true);
+            }
+            this.SetNextQuiz();
+        }else{
+            this.context.isPlay = false;
         }
-        this.SetNextQuiz();
     }
 
     private void SetNextQuiz(){
