@@ -22,6 +22,8 @@ public class Context {
     //System.DiagnosticsをusingするとDebugクラスとかぶるそうなので一旦直書き
     private System.Diagnostics.Stopwatch playTimeWatch = new System.Diagnostics.Stopwatch();
 
+    public int quizCount { get; private set; }
+
     public bool isLongSord { get; private set; }
 
 
@@ -37,6 +39,7 @@ public class Context {
         this.playTimeWatch .Start();
         this.isPlay = true;
         this.SetNextAnswers();
+        this.quizCount = 0;
         //TimeSpan ts = new TimeSpan(0, 0, Mathf.RoundToInt(this.leftTime));
         //SetLabel(this.txtCurrentTime, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
     }
@@ -46,6 +49,7 @@ public class Context {
         if(this.nextAnswer < 0){
             this.isPlay = false;
         }
+        this.quizCount++;
 
         this.currentAnswer = this.nextAnswer;
 
