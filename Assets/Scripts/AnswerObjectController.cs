@@ -35,7 +35,6 @@ public class AnswerObjectController : UtilComponent
         //Debug.Log(objName);
         if (!this.enableInput) return;
 
-        this.context.SetLongSord(false);
         switch(objName){
             case "CubeUp":
                 this.enableInput = false;

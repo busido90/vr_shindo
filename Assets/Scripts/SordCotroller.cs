@@ -12,7 +12,6 @@ public class SordCotroller : UtilComponent {
     private OVRInput.Controller activeController;
 	// Use this for initialization
 	void Start () {
-        activeController = OVRInput.GetActiveController();
 	}
 
     public void Init(Context context)
@@ -22,14 +21,22 @@ public class SordCotroller : UtilComponent {
 
     // Update is called once per frame
     void Update () {
+        activeController = OVRInput.GetActiveController();
         Quaternion rot = OVRInput.GetLocalControllerRotation(activeController);
-        bool isLongSord = true;
+        bool isLongSord = false;
         isLongSord |= (270f < rot.eulerAngles.x && rot.eulerAngles.x < 300f);
         isLongSord |= (270f < rot.eulerAngles.y && rot.eulerAngles.y < 300f);
         isLongSord |= (60f < rot.eulerAngles.y && rot.eulerAngles.y < 90f);
-        Debug.Log(isLongSord.ToString());
-        if(isLongSord){
-            this.context.SetLongSord(isLongSord);
+
+        bool isForceShortSord = true;
+        isForceShortSord &= (350f < rot.eulerAngles.x && rot.eulerAngles.x < 360f);
+        isForceShortSord &= (350f < rot.eulerAngles.y && rot.eulerAngles.y < 360f)
+            || (0f < rot.eulerAngles.y && rot.eulerAngles.y < 10f);
+        isForceShortSord &= this.context.isPlay;
+
+        //Debug.Log(isLongSord.ToString());
+        if(isLongSord || isForceShortSord){
+            this.context.SetLongSord(isLongSord && !isForceShortSord);
         }
 
         this.SetLongSord(this.context.isLongSord);

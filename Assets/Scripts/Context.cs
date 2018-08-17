@@ -32,6 +32,7 @@ public class Context {
         this.currentAnswer = FIRST_NUM;
         this.nextAnswer = this.currentAnswer;
         this.playTimeWatch = new System.Diagnostics.Stopwatch();
+        this.isPlay = false;
 	}
 
     // Use this for initialization

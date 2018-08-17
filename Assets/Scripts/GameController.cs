@@ -60,7 +60,7 @@ public class GameController : UtilComponent {
 	private void Start () {
         this.currentStatus = STATUS_ENUM.START;
 
-        this.eventController.Init(this.CallbackCut);
+        this.eventController.Init(this.CallbackCut, this.context);
         this.answerController.Init(this.context);
         this.sordCotroller.Init(this.context);
 
@@ -102,9 +102,9 @@ public class GameController : UtilComponent {
         SetLabel(this.x, rot.eulerAngles.x.ToString());
         SetLabel(this.y, rot.eulerAngles.y.ToString());
         SetLabel(this.z, rot.eulerAngles.z.ToString());
-        Debug.Log("x:" + this.x.text);
-        Debug.Log("y:" + this.y.text);
-        Debug.Log("z:" + this.z.text);
+        //Debug.Log("x:" + this.x.text);
+        //Debug.Log("y:" + this.y.text);
+        //Debug.Log("z:" + this.z.text);
         switch(this.currentStatus){
             case STATUS_ENUM.START:
                 this.UpdateStart();

@@ -13,10 +13,12 @@ public class EventController : UtilComponent {
     private System.Action<string> callbackCut;
     private bool isEnter = false;
     private string strHoverObjectName;
+    private Context context;
 
 
-    public void Init(System.Action<string> callback){
+    public void Init(System.Action<string> callback, Context context){
         this.callbackCut = callback;
+        this.context = context;
     }
 
 
@@ -35,6 +37,8 @@ public class EventController : UtilComponent {
         if (this.callbackCut != null && this.strHoverObjectName == t.name && this.isEnter)
         {
             this.callbackCut(t.name);
+            this.context.SetLongSord(false);
+
         }
         this.isEnter = false;
 
