@@ -54,28 +54,30 @@ public class Context {
         this.currentAnswer = this.nextAnswer;
 
         int random1 = UnityEngine.Random.Range(1, 10);
-        int answer1 = this.currentAnswer - random1;
-
         int random2 = random1;
-        while (random2 == random1)
-        {
-            random2 = UnityEngine.Random.Range(1, 10);
-        }
-        int answer2 = this.currentAnswer - random2;
-
         int random3 = random2;
-        while (random3 == random1 || random3 == random2)
-        {
-            random3 = UnityEngine.Random.Range(1, 10);
-        }
-        int answer3 = this.currentAnswer - random3;
 
+        if (this.currentAnswer >= 10){
+            while (random2 == random1 || this.currentAnswer - random2 < 0)
+            {
+                random2 = UnityEngine.Random.Range(1, 10);
+            }
+
+            while (random3 == random1 || random3 == random2 || this.currentAnswer - random3 < 0)
+            {
+                random3 = UnityEngine.Random.Range(1, 10);
+            }
+        }
 
         int[] randoms = new int[] { random1, random2, random3 };
         int correctAnswer = UnityEngine.Random.Range(0, 3);
 
         this.numMinus = randoms[correctAnswer];
-        this.nextAnswers = new int[] { answer1, answer2, answer3 };
+        this.nextAnswers = new int[] {
+            this.currentAnswer - random1,
+            this.currentAnswer - random2,
+            this.currentAnswer - random3
+        };
         this.nextAnswer = this.nextAnswers[correctAnswer];
     }
 
