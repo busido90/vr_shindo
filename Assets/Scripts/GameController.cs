@@ -92,6 +92,7 @@ public class GameController : UtilComponent {
         SetActive(this.objStart, false);
         SetActive(this.objCountDown, true);
         SetActive(this.objPlay, false);
+        SetActive(this.resultModal.gameObject, false);
     }
 	
 	// Update is called once per frame
@@ -164,7 +165,8 @@ public class GameController : UtilComponent {
 
     private void UpdateFinish()
     {
-        ResultModalModel model = new ResultModalModel(this.context.correctCount, 70f);
+        this.context.WatchStop();
+        ResultModalModel model = new ResultModalModel(this.context.correctCount, this.context.playTime);
         resultModal.Show(model);
         this.currentStatus = STATUS_ENUM.SHOW_RESLUT;
     }
