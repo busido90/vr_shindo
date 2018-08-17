@@ -23,7 +23,7 @@ public class SordCotroller : UtilComponent {
     // Update is called once per frame
     void Update () {
         Quaternion rot = OVRInput.GetLocalControllerRotation(activeController);
-        bool isLongSord = false;
+        bool isLongSord = true;
         isLongSord |= (270f < rot.eulerAngles.x && rot.eulerAngles.x < 300f);
         isLongSord |= (270f < rot.eulerAngles.y && rot.eulerAngles.y < 300f);
         isLongSord |= (60f < rot.eulerAngles.y && rot.eulerAngles.y < 90f);

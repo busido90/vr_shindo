@@ -60,6 +60,8 @@ public class CountDownComponent : UtilComponent {
 		this.isInitialized = true;
 		this.isPlayStart = isPlayStart;
 		this.callbackFinish = callbackFinish;
+        this.isPast = false;
+        this.elapsedTime = 0f;
 
 		this.SetCountDownText ();
 	}

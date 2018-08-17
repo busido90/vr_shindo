@@ -18,6 +18,12 @@ public class Context {
     //[NonSerialized] public float leftTime = PLAY_TIME;
     [NonSerialized] public float leftNum = FIRST_NUM;
 
+    public float playTime{ get { return (float)playTimeWatch.Elapsed.TotalSeconds; } } 
+    //System.DiagnosticsをusingするとDebugクラスとかぶるそうなので一旦直書き
+    private System.Diagnostics.Stopwatch playTimeWatch = new System.Diagnostics.Stopwatch();
+
+    public int quizCount { get; private set; }
+
     public bool isLongSord { get; private set; }
 
 
@@ -25,13 +31,15 @@ public class Context {
 	{
         this.currentAnswer = FIRST_NUM;
         this.nextAnswer = this.currentAnswer;
+        this.playTimeWatch = new System.Diagnostics.Stopwatch();
 	}
 
     // Use this for initialization
-    public void StartPlay()
-    {
+    public void StartPlay(){
+        this.playTimeWatch .Start();
         this.isPlay = true;
         this.SetNextAnswers();
+        this.quizCount = 0;
         //TimeSpan ts = new TimeSpan(0, 0, Mathf.RoundToInt(this.leftTime));
         //SetLabel(this.txtCurrentTime, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
     }
@@ -41,6 +49,7 @@ public class Context {
         if(this.nextAnswer < 0){
             this.isPlay = false;
         }
+        this.quizCount++;
 
         this.currentAnswer = this.nextAnswer;
 
@@ -89,6 +98,9 @@ public class Context {
         this.isLongSord = isLong;
     }
 
+    public void WatchStop(){
+        this.playTimeWatch.Stop();
+    }
 
     //public void SetLeftTime(float leftTime){
     //    this.leftTime -= leftTime;
