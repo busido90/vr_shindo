@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 public class Context {
 
@@ -26,6 +27,11 @@ public class Context {
 
     public bool isLongSord { get; private set; }
 
+    /// <summary>
+    /// 最後の問題かの判定(nextAnsersが全て同じ数値だったら最後)
+    /// </summary>
+    /// <returns><c>true</c>, if final quiz was ised, <c>false</c> otherwise.</returns>
+    public bool isFinalQuiz { get { return nextAnswers.All(num => num == this.nextAnswer); } }
 
 	public void Init()
 	{
@@ -40,43 +46,45 @@ public class Context {
         this.playTimeWatch .Start();
         this.isPlay = true;
         this.SetNextAnswers();
-        this.quizCount = 0;
+        this.quizCount = 1;
+        this.correctCount = 0;
         //TimeSpan ts = new TimeSpan(0, 0, Mathf.RoundToInt(this.leftTime));
         //SetLabel(this.txtCurrentTime, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
     }
         
     public void SetNextAnswers()
-    {
-        if(this.nextAnswer < 0){
-            this.isPlay = false;
-        }
+    {        
         this.quizCount++;
 
         this.currentAnswer = this.nextAnswer;
 
         int random1 = UnityEngine.Random.Range(1, 10);
-        int answer1 = this.currentAnswer - random1;
-
+        while (this.currentAnswer - random1 < 0)
+            random1 = UnityEngine.Random.Range(1, 10);
         int random2 = random1;
-        while (random2 == random1)
-        {
-            random2 = UnityEngine.Random.Range(1, 10);
-        }
-        int answer2 = this.currentAnswer - random2;
-
         int random3 = random2;
-        while (random3 == random1 || random3 == random2)
-        {
-            random3 = UnityEngine.Random.Range(1, 10);
-        }
-        int answer3 = this.currentAnswer - random3;
 
+        if (this.currentAnswer >= 10){
+            while (random2 == random1 || this.currentAnswer - random2 < 0)
+            {
+                random2 = UnityEngine.Random.Range(1, 10);
+            }
+
+            while (random3 == random1 || random3 == random2 || this.currentAnswer - random3 < 0)
+            {
+                random3 = UnityEngine.Random.Range(1, 10);
+            }
+        }
 
         int[] randoms = new int[] { random1, random2, random3 };
         int correctAnswer = UnityEngine.Random.Range(0, 3);
 
         this.numMinus = randoms[correctAnswer];
-        this.nextAnswers = new int[] { answer1, answer2, answer3 };
+        this.nextAnswers = new int[] {
+            this.currentAnswer - random1,
+            this.currentAnswer - random2,
+            this.currentAnswer - random3
+        };
         this.nextAnswer = this.nextAnswers[correctAnswer];
     }
 
@@ -102,6 +110,7 @@ public class Context {
     public void WatchStop(){
         this.playTimeWatch.Stop();
     }
+
 
     //public void SetLeftTime(float leftTime){
     //    this.leftTime -= leftTime;
