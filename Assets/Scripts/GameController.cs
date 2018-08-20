@@ -29,12 +29,11 @@ public class GameController : UtilComponent {
 	}
     private STATUS_ENUM currentStatus = STATUS_ENUM.START;
 
-    [SerializeField] private StartObject startObject;
     [SerializeField] private EventController eventController;
 
     [SerializeField] private CountDownComponent cdComponent;
 
-    [SerializeField] private GameObject objStart;
+    [SerializeField] private Transform trStart;
     [SerializeField] private GameObject objCountDown;
     [SerializeField] private GameObject objPlay;
 
@@ -53,8 +52,9 @@ public class GameController : UtilComponent {
     [SerializeField] private Text y;
     [SerializeField] private Text z;
 
-
     [SerializeField] private ResultModalPresenter resultModal;
+
+    private StartObject startObject;
 
 	// Use this for initialization
 	private void Start () {
@@ -64,7 +64,9 @@ public class GameController : UtilComponent {
         this.answerController.Init(this.context);
         this.sordCotroller.Init(this.context);
 
-        SetActive(this.objStart, true);
+        startObject = ResourceLoader.Instance.Create<StartObject>("Prefabs/CubeStart", trStart);
+        startObject.Init();
+        SetActive(this.trStart, true);
         SetActive(this.objCountDown, false);
         SetActive(this.objPlay, false);
 
@@ -89,7 +91,7 @@ public class GameController : UtilComponent {
         yield return new WaitForSeconds(2);
 
         this.cdComponent.Init(3.0f, this.FinishCountDown, false);
-        SetActive(this.objStart, false);
+        SetActive(this.trStart, false);
         SetActive(this.objCountDown, true);
         SetActive(this.objPlay, false);
         SetActive(this.resultModal.gameObject, false);
@@ -139,7 +141,7 @@ public class GameController : UtilComponent {
         this.answerController.SetAnswers();
 
 
-        SetActive(this.objStart, false);
+        SetActive(this.trStart, false);
         SetActive(this.objCountDown, false);
         SetActive(this.objPlay, true);
         //if (this.audioSource != null)

@@ -10,13 +10,24 @@ public class AnswerObjectController : UtilComponent
 
 
     private Context context;
-    [SerializeField] private AnswerObject[] answers;
+    [SerializeField] private Transform parentUp;
+    [SerializeField] private Transform parentLeft;
+    [SerializeField] private Transform parentRight;
+
+    private AnswerObject[] answers;
 
     private bool enableInput = true;
 
-	public void Init(Context context)
-	{
+    public void Init(Context context)
+    {
         this.context = context;
+
+        answers = new AnswerObject[]{
+            ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeUp", parentUp),
+            ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeLeft", parentLeft),
+            ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeRight", parentRight)
+        };
+
         for (int i = 0; i < this.answers.Length; i++)
         {
             this.answers[i].Init();
