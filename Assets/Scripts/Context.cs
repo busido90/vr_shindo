@@ -58,34 +58,38 @@ public class Context {
 
         this.currentAnswer = this.nextAnswer;
 
-        int random1 = UnityEngine.Random.Range(1, 10);
-        while (this.currentAnswer - random1 < 0)
-            random1 = UnityEngine.Random.Range(1, 10);
-        int random2 = random1;
+        int answer = UnityEngine.Random.Range(1, 10);
+        while (this.currentAnswer - answer < 0)
+            //answer = UnityEngine.Random.Range(1, 10);
+            answer = 7;
+        int random2 = answer;
         int random3 = random2;
 
         if (this.currentAnswer >= 10){
-            while (random2 == random1 || this.currentAnswer - random2 < 0)
+            while (random2 == answer || this.currentAnswer - random2 < 0)
             {
                 random2 = UnityEngine.Random.Range(1, 10);
             }
 
-            while (random3 == random1 || random3 == random2 || this.currentAnswer - random3 < 0)
+            while (random3 == answer || random3 == random2 || this.currentAnswer - random3 < 0)
             {
                 random3 = UnityEngine.Random.Range(1, 10);
             }
         }
 
-        int[] randoms = new int[] { random1, random2, random3 };
-        int correctAnswer = UnityEngine.Random.Range(0, 3);
+        int[] randoms = new int[] { answer, random2, random3 };
+        //int correctAnswer = UnityEngine.Random.Range(0, 3);
 
-        this.numMinus = randoms[correctAnswer];
+        int[] shuffle = randoms.OrderBy(i => Guid.NewGuid()).ToArray();
+
+        //this.numMinus = randoms[correctAnswer];
+        this.numMinus = answer;
         this.nextAnswers = new int[] {
-            this.currentAnswer - random1,
-            this.currentAnswer - random2,
-            this.currentAnswer - random3
+            this.currentAnswer - shuffle[0],
+            this.currentAnswer - shuffle[1],
+            this.currentAnswer - shuffle[2]
         };
-        this.nextAnswer = this.nextAnswers[correctAnswer];
+        this.nextAnswer = this.currentAnswer - answer;
     }
 
 
