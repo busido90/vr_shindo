@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
 
 public class AnswerObjectController : UtilComponent
 {
@@ -28,6 +29,8 @@ public class AnswerObjectController : UtilComponent
         {
             this.answers[i].SetAnswer(this.context.nextAnswers[i]);
         }
+        Array.ForEach(this.answers, answer => answer.gameObject.SetActive(true));
+        this.enableInput = true;
     }
 
 
@@ -94,20 +97,16 @@ public class AnswerObjectController : UtilComponent
         }
         yield return new WaitForSeconds(2);
 
-        if (this.context.isFinalQuiz)
+        if (this.context.isFinalQuiz) {
             this.context.isPlay = false;
-
-        for (int i = 0; i < this.answers.Length; i++)
-        {
-            SetActive(this.answers[i].gameObject, true);
+            yield break;
         }
-        this.SetNextQuiz();
         
+        this.SetNextQuiz();
     }
 
     private void SetNextQuiz(){
         this.context.SetNextAnswers();
         this.SetAnswers();
-        this.enableInput = true;
     }
 }

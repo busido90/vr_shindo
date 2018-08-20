@@ -45,7 +45,7 @@ public class Context {
         this.playTimeWatch .Start();
         this.isPlay = true;
         this.SetNextAnswers();
-        this.quizCount = 0;
+        this.quizCount = 1;
         this.correctCount = 0;
         //TimeSpan ts = new TimeSpan(0, 0, Mathf.RoundToInt(this.leftTime));
         //SetLabel(this.txtCurrentTime, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
