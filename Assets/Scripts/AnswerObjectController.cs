@@ -93,6 +93,10 @@ public class AnswerObjectController : UtilComponent
             SetActive(this.answers[i].gameObject, false);
         }
         yield return new WaitForSeconds(2);
+
+        if (this.context.IsFinalQuiz())
+            this.context.isPlay = false;
+
         for (int i = 0; i < this.answers.Length; i++)
         {
             SetActive(this.answers[i].gameObject, true);

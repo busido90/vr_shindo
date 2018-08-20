@@ -46,15 +46,14 @@ public class Context {
     }
         
     public void SetNextAnswers()
-    {
-        if(this.nextAnswer < 0){
-            this.isPlay = false;
-        }
+    {        
         this.quizCount++;
 
         this.currentAnswer = this.nextAnswer;
 
         int random1 = UnityEngine.Random.Range(1, 10);
+        while (this.currentAnswer - random1 < 0)
+            random1 = UnityEngine.Random.Range(1, 10);
         int random2 = random1;
         int random3 = random2;
 
@@ -103,6 +102,20 @@ public class Context {
 
     public void WatchStop(){
         this.playTimeWatch.Stop();
+    }
+
+    /// <summary>
+    /// 最後の問題かの判定(nextAnsersが全て同じ数値だったら最後)
+    /// </summary>
+    /// <returns><c>true</c>, if final quiz was ised, <c>false</c> otherwise.</returns>
+    public bool IsFinalQuiz() {
+        bool isfinal = false;
+        int num = nextAnswers[0];
+        foreach (int i in nextAnswers){
+            isfinal = (i == num);
+            num = i;
+        }
+        return isfinal;
     }
 
     //public void SetLeftTime(float leftTime){
