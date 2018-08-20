@@ -94,7 +94,7 @@ public class AnswerObjectController : UtilComponent
         }
         yield return new WaitForSeconds(2);
 
-        if (this.context.IsFinalQuiz())
+        if (this.context.isFinalQuiz)
             this.context.isPlay = false;
 
         for (int i = 0; i < this.answers.Length; i++)

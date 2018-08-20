@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 public class Context {
 
@@ -26,6 +27,11 @@ public class Context {
 
     public bool isLongSord { get; private set; }
 
+    /// <summary>
+    /// 最後の問題かの判定(nextAnsersが全て同じ数値だったら最後)
+    /// </summary>
+    /// <returns><c>true</c>, if final quiz was ised, <c>false</c> otherwise.</returns>
+    public bool isFinalQuiz { get { return nextAnswers.All(num => num == this.nextAnswer); } }
 
 	public void Init()
 	{
@@ -104,19 +110,6 @@ public class Context {
         this.playTimeWatch.Stop();
     }
 
-    /// <summary>
-    /// 最後の問題かの判定(nextAnsersが全て同じ数値だったら最後)
-    /// </summary>
-    /// <returns><c>true</c>, if final quiz was ised, <c>false</c> otherwise.</returns>
-    public bool IsFinalQuiz() {
-        bool isfinal = false;
-        int num = nextAnswers[0];
-        foreach (int i in nextAnswers){
-            isfinal = (i == num);
-            num = i;
-        }
-        return isfinal;
-    }
 
     //public void SetLeftTime(float leftTime){
     //    this.leftTime -= leftTime;
