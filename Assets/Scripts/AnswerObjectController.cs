@@ -73,12 +73,12 @@ public class AnswerObjectController : UtilComponent
         if (Input.GetKey(KeyCode.A))
         {
             this.enableInput = false;
-            this.CheckAnswer(0);
+            this.CheckAnswer(1);
         }
         if (Input.GetKey(KeyCode.W))
         {
             this.enableInput = false;
-            this.CheckAnswer(1);
+            this.CheckAnswer(0);
        }
         if (Input.GetKey(KeyCode.D))
         {
