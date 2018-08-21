@@ -14,7 +14,7 @@ public class ResultModalPresenter : MonoBehaviour
         score.text = string.Format("{0}/{1}", model.Score, model.QuizCount);
         TimeSpan ts = new TimeSpan(0, 0, Mathf.RoundToInt(model.LeftTime));
         leftTime.text = string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds);
-        model.Start.Init();
+        model.Start.Init("Start");
         this.gameObject.SetActive(true);
     }
 

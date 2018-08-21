@@ -54,7 +54,8 @@ public class GameController : UtilComponent {
 
     [SerializeField] private Transform trResult;
 
-    private StartObject startObject;
+
+    [SerializeField] private StartObject startObject;
     private ResultModalPresenter resultModalPresenter;
 	// Use this for initialization
 	private void Start () {
@@ -64,8 +65,8 @@ public class GameController : UtilComponent {
         this.answerController.Init(this.context);
         this.sordCotroller.Init(this.context);
 
-        startObject = ResourceLoader.Instance.Create<StartObject>("Prefabs/CubeStart", trStart);
-        startObject.Init();
+        //startObject = ResourceLoader.Instance.Create<StartObject>("Prefabs/CubeStart", trStart);
+        startObject.Init("Start");
 
         SetActive(this.objCountDown, false);
         SetActive(this.objPlay, false);
@@ -74,7 +75,9 @@ public class GameController : UtilComponent {
 	}
 
     private void CallbackCut(string objName){
-        if(objName == "CubeStart"){
+        //Debug.Log(objName);
+
+        if(objName == "Start"){
             this.currentStatus = STATUS_ENUM.COUNT;
             //Debug.Log("CubeStart");
             this.startObject.WasCut();

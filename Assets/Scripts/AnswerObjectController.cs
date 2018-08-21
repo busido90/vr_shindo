@@ -22,16 +22,15 @@ public class AnswerObjectController : UtilComponent
     {
         this.context = context;
 
-        answers = new AnswerObject[]{
-            ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeUp", parentUp),
-            ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeLeft", parentLeft),
-            ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeRight", parentRight)
-        };
+        answers = new AnswerObject[3];
 
-        for (int i = 0; i < this.answers.Length; i++)
-        {
-            this.answers[i].Init();
-        }
+        this.answers[0] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeUp", parentUp);
+        this.answers[0].Init("Up");
+        this.answers[1] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeLeft", parentLeft);
+        this.answers[1].Init("Left");
+        this.answers[2] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeRight", parentRight);
+        this.answers[2].Init("Right");
+
 	}
 
 	public void SetAnswers()
@@ -50,15 +49,15 @@ public class AnswerObjectController : UtilComponent
         if (!this.enableInput) return;
 
         switch(objName){
-            case "CubeUp":
+            case "Up":
                 this.enableInput = false;
                 this.CheckAnswer(0);
                 break;
-            case "CubeLeft":
+            case "Left":
                 this.enableInput = false;
                 this.CheckAnswer(1);
                 break;
-            case "CubeRight":
+            case "Right":
                 this.enableInput = false;
                 this.CheckAnswer(2);
                 break;

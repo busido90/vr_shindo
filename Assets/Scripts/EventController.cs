@@ -36,8 +36,11 @@ public class EventController : UtilComponent {
         SetLabel(this.txtExit, t.position.y.ToString());
         if (this.callbackCut != null && this.strHoverObjectName == t.name && this.isEnter)
         {
-            this.callbackCut(t.name);
-            this.context.SetLongSord(false);
+            StartObject obj = t.parent.GetComponent<StartObject>();
+            if(obj != null){
+                this.callbackCut(obj.objName);
+                this.context.SetLongSord(false);
+            }
 
         }
         this.isEnter = false;
