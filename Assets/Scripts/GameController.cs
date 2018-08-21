@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using UnityEngine.Events;
 
 public class GameController : UtilComponent {
@@ -44,6 +45,7 @@ public class GameController : UtilComponent {
     [SerializeField] private Text curretAnswer;
     [SerializeField] private Text numMinus;
     [SerializeField] private Text correctCount;
+    [SerializeField] private Text time;
 
     [SerializeField] private SordCotroller sordCotroller;
 
@@ -81,6 +83,7 @@ public class GameController : UtilComponent {
             this.currentStatus = STATUS_ENUM.COUNT;
             //Debug.Log("CubeStart");
             this.startObject.WasCut();
+            this.resultModalPresenter.Close();
             StartCoroutine(this.SetCountDown());
         }else {
             if (this.currentStatus != STATUS_ENUM.PLAY) return;
@@ -165,6 +168,9 @@ public class GameController : UtilComponent {
         SetLabel(this.curretAnswer, this.context.currentAnswer.ToString());
         SetLabel(this.numMinus, this.context.numMinus.ToString());
         SetLabel(this.correctCount, this.context.correctCount.ToString());
+
+        TimeSpan ts = new TimeSpan(0, 0, Mathf.RoundToInt(this.context.playTime));
+        SetLabel(this.time, string.Format("{0:D2}:{1:D2}", ts.Minutes, ts.Seconds));
         //this.context.SetLeftTime(Time.deltaTime);
 	}
 
@@ -179,6 +185,8 @@ public class GameController : UtilComponent {
 
         resultModalPresenter.Show(model);
         this.currentStatus = STATUS_ENUM.SHOW_RESLUT;
+        SetActive(this.trStart, true);
+
     }
 
     private void UpdateShowResult(){
