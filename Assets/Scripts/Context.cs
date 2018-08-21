@@ -4,7 +4,7 @@ using System.Linq;
 public class Context {
 
     //private const float PLAY_TIME = 60f;
-    private const int FIRST_NUM = 100;
+    private const int FIRST_NUM = 30;
     private const int CHOICE_COUNT = 3;
 
     public int currentAnswer { get; private set; }
@@ -58,10 +58,9 @@ public class Context {
 
         this.currentAnswer = this.nextAnswer;
 
-        int answer = UnityEngine.Random.Range(1, 10);
+        int answer = 7;
         while (this.currentAnswer - answer < 0)
-            //answer = UnityEngine.Random.Range(1, 10);
-            answer = 7;
+            answer = this.currentAnswer;
         int random2 = answer;
         int random3 = random2;
 
