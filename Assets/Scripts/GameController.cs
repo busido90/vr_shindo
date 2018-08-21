@@ -66,13 +66,11 @@ public class GameController : UtilComponent {
 
         startObject = ResourceLoader.Instance.Create<StartObject>("Prefabs/CubeStart", trStart);
         startObject.Init();
-        SetActive(this.trStart, true);
+
         SetActive(this.objCountDown, false);
         SetActive(this.objPlay, false);
 
-        resultModalPresenter = ResourceLoader.Instance.Create<ResultModalPresenter>("Prefabs/ResultModal", trResult);
-        resultModalPresenter.Close();
-
+        resultModalPresenter = ResourceLoader.Instance.Create<ResultModalPresenter>("Prefabs/ResultModal", trResult, false);
 	}
 
     private void CallbackCut(string objName){
@@ -97,7 +95,6 @@ public class GameController : UtilComponent {
         SetActive(this.trStart, false);
         SetActive(this.objCountDown, true);
         SetActive(this.objPlay, false);
-        SetActive(this.trResult, false);
     }
 	
 	// Update is called once per frame

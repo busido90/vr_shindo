@@ -23,13 +23,14 @@ public class ResourceLoader : MonoBehaviour {
     /// <returns>The create.</returns>
     /// <param name="path">Path.</param>
     /// <param name="parent">Parent.</param>
+    /// <param name="isActive">If set to <c>true</c> is active.</param>
     /// <typeparam name="T">The 1st type parameter.</typeparam>
-    public T Create<T>(string path, Transform parent){
+    public T Create<T>(string path, Transform parent, bool isActive = true){
         GameObject prefab = (GameObject)Resources.Load(path);
 
         GameObject instanceObject = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
         instanceObject.transform.SetParent(parent, false);
-
+        instanceObject.gameObject.SetActive(isActive);
         T component = instanceObject.GetComponent<T>();
 
         return component;
