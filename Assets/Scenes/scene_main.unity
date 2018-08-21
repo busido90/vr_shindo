@@ -463,32 +463,32 @@ Prefab:
     - target: {fileID: 224914135787123384, guid: ea505aa8a63fa49e0be45a3a21045b44,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -166
+      value: -136.1
       objectReference: {fileID: 0}
     - target: {fileID: 224914135787123384, guid: ea505aa8a63fa49e0be45a3a21045b44,
         type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 224664235000353086, guid: ea505aa8a63fa49e0be45a3a21045b44,
         type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 224914135787123384, guid: ea505aa8a63fa49e0be45a3a21045b44,
         type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 224664235000353086, guid: ea505aa8a63fa49e0be45a3a21045b44,
         type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 224914135787123384, guid: ea505aa8a63fa49e0be45a3a21045b44,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -77
+      value: -29
       objectReference: {fileID: 0}
     - target: {fileID: 224664235000353086, guid: ea505aa8a63fa49e0be45a3a21045b44,
         type: 2}
@@ -498,7 +498,7 @@ Prefab:
     - target: {fileID: 224664235000353086, guid: ea505aa8a63fa49e0be45a3a21045b44,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 23.000002
+      value: -29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea505aa8a63fa49e0be45a3a21045b44, type: 2}
@@ -969,6 +969,12 @@ MonoBehaviour:
   rayDrawDistance: 500
   gazeDrawDistance: 3
   activeController: 0
+--- !u!114 &1392701279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114500982831276322, guid: ea505aa8a63fa49e0be45a3a21045b44,
+    type: 2}
+  m_PrefabInternal: {fileID: 760337386}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1410787457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1510,7 @@ MonoBehaviour:
   curretAnswer: {fileID: 760337393}
   numMinus: {fileID: 760337392}
   correctCount: {fileID: 760337391}
+  time: {fileID: 1392701279}
   sordCotroller: {fileID: 2046285793}
   x: {fileID: 760337390}
   y: {fileID: 760337389}
