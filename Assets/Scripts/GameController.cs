@@ -52,10 +52,10 @@ public class GameController : UtilComponent {
     [SerializeField] private Text y;
     [SerializeField] private Text z;
 
-    [SerializeField] private ResultModalPresenter resultModal;
+    [SerializeField] private Transform trResult;
 
     private StartObject startObject;
-
+    private ResultModalPresenter resultModalPresenter;
 	// Use this for initialization
 	private void Start () {
         this.currentStatus = STATUS_ENUM.START;
@@ -69,6 +69,9 @@ public class GameController : UtilComponent {
         SetActive(this.trStart, true);
         SetActive(this.objCountDown, false);
         SetActive(this.objPlay, false);
+
+        resultModalPresenter = ResourceLoader.Instance.Create<ResultModalPresenter>("Prefabs/ResultModal", trResult);
+        resultModalPresenter.Close();
 
 	}
 
@@ -94,7 +97,7 @@ public class GameController : UtilComponent {
         SetActive(this.trStart, false);
         SetActive(this.objCountDown, true);
         SetActive(this.objPlay, false);
-        SetActive(this.resultModal.gameObject, false);
+        SetActive(this.trResult, false);
     }
 	
 	// Update is called once per frame
@@ -169,8 +172,12 @@ public class GameController : UtilComponent {
     {
         this.context.WatchStop();
         ResultModalModel model = 
-            new ResultModalModel(this.context.correctCount, this.context.quizCount, this.context.playTime);
-        resultModal.Show(model);
+            new ResultModalModel(this.context.correctCount,
+                                 this.context.quizCount,
+                                 this.context.playTime,
+                                 this.startObject);
+
+        resultModalPresenter.Show(model);
         this.currentStatus = STATUS_ENUM.SHOW_RESLUT;
     }
 
