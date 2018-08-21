@@ -52,4 +52,14 @@ public class EventController : UtilComponent {
         SetLabel(this.txtHover, t.position.y.ToString());
 
     }
+
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.S))
+        {
+            this.callbackCut("Start");
+            this.context.SetLongSord(false);
+        }
+    }
 }
