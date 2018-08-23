@@ -24,6 +24,12 @@ public class StartObject : UtilComponent
         SetActive(this.objAnimation, true);
     }
 
+    public void OnTriggerEnter(Collider other) {
+        Debug.LogError("cut!");
+        if (other.gameObject.tag == "Sowrd") {
+            WasCut();
+        }
+    }
 
 
 }
