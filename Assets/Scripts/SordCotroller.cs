@@ -4,9 +4,13 @@ using UnityEngine;
 using ControllerSelection;
 
 public class SordCotroller : UtilComponent {
-
+    
     public OVRRawRaycaster rawRaycaster;
     public OVRPointerVisualizer visualizer;
+
+    public GameObject objNormalSord;
+    public GameObject objSpecialSord;
+
 
     private Context context;
     private OVRInput.Controller activeController;
@@ -47,9 +51,13 @@ public class SordCotroller : UtilComponent {
         {
             this.rawRaycaster.raycastDistance = 6f;
             this.visualizer.rayDrawDistance = 6f;
+            SetActive(this.objNormalSord, false);
+            SetActive(this.objSpecialSord, true);
         }else{
             this.rawRaycaster.raycastDistance = 2f;
-            this.visualizer.rayDrawDistance = 2f;            
+            this.visualizer.rayDrawDistance = 2f;  
+            SetActive(this.objNormalSord, true);
+            SetActive(this.objSpecialSord, false);
         }
     }
 

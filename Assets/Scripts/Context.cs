@@ -4,7 +4,7 @@ using System.Linq;
 public class Context {
 
     //private const float PLAY_TIME = 60f;
-    private const int FIRST_NUM = 30;
+    private const int FIRST_NUM = 100;
     private const int CHOICE_COUNT = 3;
 
     public int currentAnswer { get; private set; }
