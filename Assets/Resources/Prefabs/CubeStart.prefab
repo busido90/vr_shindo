@@ -243,6 +243,8 @@ GameObject:
   - component: {fileID: 33599166500240358}
   - component: {fileID: 23465961866645420}
   - component: {fileID: 222864699566383236}
+  - component: {fileID: 65473406418089050}
+  - component: {fileID: 114718062286908444}
   m_Layer: 0
   m_Name: CubeStart
   m_TagString: Untagged
@@ -470,8 +472,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7, y: 0.44, z: 1}
-  m_Center: {x: 0, y: 0.05, z: 0}
+  m_Size: {x: 2, y: 0.2, z: 0.5}
+  m_Center: {x: 0, y: 0.15, z: 0}
+--- !u!65 &65473406418089050
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1940697759265562}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.8, z: 1}
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!65 &65894473782760062
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -630,6 +644,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114718062286908444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1940697759265562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71eb62392bee497fb121e81f8d253d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114734555852429694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -725,6 +750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objCube: {fileID: 1940697759265562}
   objAnimation: {fileID: 1183617017499550}
+  childCollider: {fileID: 114718062286908444}
 --- !u!222 &222035995994830840
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -88,6 +88,8 @@ GameObject:
   - component: {fileID: 33421952415598346}
   - component: {fileID: 23196130575442856}
   - component: {fileID: 222695229844915460}
+  - component: {fileID: 65252300930993122}
+  - component: {fileID: 114198962253757188}
   m_Layer: 0
   m_Name: CubeLeft
   m_TagString: Untagged
@@ -460,6 +462,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65252300930993122
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1570775662151916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.8, z: 1}
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!65 &65561145864766148
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -482,8 +496,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.5, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 0.15, z: 0.5}
+  m_Center: {x: 0, y: 0.17, z: 0}
 --- !u!95 &95139406640571018
 Animator:
   serializedVersion: 3
@@ -518,6 +532,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114198962253757188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1570775662151916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71eb62392bee497fb121e81f8d253d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114244874875525172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -725,6 +750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objCube: {fileID: 1570775662151916}
   objAnimation: {fileID: 1409584289135070}
+  childCollider: {fileID: 114198962253757188}
   txtAnswer: {fileID: 114770022378009852}
   answer: 0
 --- !u!222 &222032456455245266

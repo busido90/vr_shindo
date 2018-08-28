@@ -59,7 +59,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1217984625326380
 GameObject:
   m_ObjectHideFlags: 1
@@ -123,6 +123,8 @@ GameObject:
   - component: {fileID: 33477241688633814}
   - component: {fileID: 23050438049041496}
   - component: {fileID: 222495621868636542}
+  - component: {fileID: 65354340700369744}
+  - component: {fileID: 114442043144855178}
   m_Layer: 0
   m_Name: CubeUp
   m_TagString: Untagged
@@ -458,8 +460,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7, y: 0.44, z: 1}
-  m_Center: {x: 0, y: 0.05, z: 0}
+  m_Size: {x: 2, y: 0.15, z: 0.5}
+  m_Center: {x: 0, y: 0.17, z: 0}
 --- !u!65 &65183601466749202
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -472,6 +474,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65354340700369744
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1366160736699568}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.8, z: 1}
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!65 &65670146772675754
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -712,6 +726,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114442043144855178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1366160736699568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71eb62392bee497fb121e81f8d253d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114623069563796486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -725,6 +750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objCube: {fileID: 1366160736699568}
   objAnimation: {fileID: 1646051171828942}
+  childCollider: {fileID: 114442043144855178}
   txtAnswer: {fileID: 114079287771629076}
   answer: 0
 --- !u!222 &222231660661536190

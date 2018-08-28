@@ -8,6 +8,7 @@ public class StartObject : UtilComponent
 
     [SerializeField] protected GameObject objCube;
     [SerializeField] protected GameObject objAnimation;
+    [SerializeField] protected ChildColliderController childCollider;
 
     public event Action<string> cutEvent;
 
@@ -24,7 +25,7 @@ public class StartObject : UtilComponent
     }
 
     public void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Sowrd") {
+        if (other.gameObject.tag == "Sowrd" && this.childCollider.isCutFromOutside) {
             WasCut();
             cutEvent(this.objName);
         }
