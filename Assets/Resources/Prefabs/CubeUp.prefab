@@ -52,6 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4458697117001470}
   - component: {fileID: 114623069563796486}
+  - component: {fileID: 65053422106919652}
   m_Layer: 0
   m_Name: CubeUp
   m_TagString: Untagged
@@ -121,7 +122,6 @@ GameObject:
   - component: {fileID: 4637414560916916}
   - component: {fileID: 33477241688633814}
   - component: {fileID: 23050438049041496}
-  - component: {fileID: 65578283477461422}
   - component: {fileID: 222495621868636542}
   m_Layer: 0
   m_Name: CubeUp
@@ -448,6 +448,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1234129667944650}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65053422106919652
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140818129085162}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7, y: 0.44, z: 1}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!65 &65183601466749202
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -456,18 +468,6 @@ BoxCollider:
   m_GameObject: {fileID: 1234129667944650}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65578283477461422
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1366160736699568}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

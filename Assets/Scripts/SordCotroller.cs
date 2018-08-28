@@ -49,12 +49,12 @@ public class SordCotroller : UtilComponent {
     private void SetLongSord(bool isLongSord){
         if (isLongSord)
         {
-            this.rawRaycaster.raycastDistance = 6f;
+            //this.rawRaycaster.raycastDistance = 6f;
             this.visualizer.rayDrawDistance = 6f;
             SetActive(this.objNormalSord, false);
             SetActive(this.objSpecialSord, true);
         }else{
-            this.rawRaycaster.raycastDistance = 2f;
+            //this.rawRaycaster.raycastDistance = 2f;
             this.visualizer.rayDrawDistance = 2f;  
             SetActive(this.objNormalSord, true);
             SetActive(this.objSpecialSord, false);

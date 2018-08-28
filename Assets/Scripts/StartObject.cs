@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class StartObject : UtilComponent
 {
@@ -11,6 +8,8 @@ public class StartObject : UtilComponent
 
     [SerializeField] protected GameObject objCube;
     [SerializeField] protected GameObject objAnimation;
+
+    public event Action<string> cutEvent;
 
     public void Init(string objName)
     {
@@ -25,9 +24,9 @@ public class StartObject : UtilComponent
     }
 
     public void OnTriggerEnter(Collider other) {
-        Debug.LogError("cut!");
         if (other.gameObject.tag == "Sowrd") {
             WasCut();
+            cutEvent(this.objName);
         }
     }
 

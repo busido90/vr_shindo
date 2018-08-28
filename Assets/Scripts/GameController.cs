@@ -64,11 +64,12 @@ public class GameController : UtilComponent {
         this.currentStatus = STATUS_ENUM.START;
 
         this.eventController.Init(this.CallbackCut, this.context);
-        this.answerController.Init(this.context);
+        this.answerController.Init(this.context, CallbackCut);
         this.sordCotroller.Init(this.context);
 
         //startObject = ResourceLoader.Instance.Create<StartObject>("Prefabs/CubeStart", trStart);
         startObject.Init("Start");
+        startObject.cutEvent += CallBackStartCut;
 
         SetActive(this.objCountDown, false);
         SetActive(this.objPlay, false);
@@ -76,21 +77,17 @@ public class GameController : UtilComponent {
         resultModalPresenter = ResourceLoader.Instance.Create<ResultModalPresenter>("Prefabs/ResultModal", trResult, false);
 	}
 
-    private void CallbackCut(string objName){
-        //Debug.Log(objName);
-
-        if(objName == "Start"){
-            this.currentStatus = STATUS_ENUM.COUNT;
-            //Debug.Log("CubeStart");
-            this.startObject.WasCut();
-            this.resultModalPresenter.Close();
-            StartCoroutine(this.SetCountDown());
-        }else {
-            if (this.currentStatus != STATUS_ENUM.PLAY) return;
-           this.answerController.Answer(objName);
-        }
+    private void CallBackStartCut(string objName){
+        this.currentStatus = STATUS_ENUM.COUNT;
+        this.startObject.WasCut();
+        this.resultModalPresenter.Close();
+        StartCoroutine(this.SetCountDown());
     }
 
+    private void CallbackCut(string objName){
+        if (this.currentStatus != STATUS_ENUM.PLAY) return;
+        this.answerController.Answer(objName);
+    }
 
     private IEnumerator SetCountDown(){
         //Debug.Log("CountDown");

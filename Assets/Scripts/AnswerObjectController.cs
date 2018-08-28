@@ -18,7 +18,7 @@ public class AnswerObjectController : UtilComponent
 
     private bool enableInput = true;
 
-    public void Init(Context context)
+    public void Init(Context context, Action<string> action)
     {
         this.context = context;
 
@@ -31,6 +31,7 @@ public class AnswerObjectController : UtilComponent
         this.answers[2] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeRight", parentRight);
         this.answers[2].Init("Right");
 
+        Array.ForEach(this.answers, answer => answer.cutEvent += action);
 	}
 
 	public void SetAnswers()

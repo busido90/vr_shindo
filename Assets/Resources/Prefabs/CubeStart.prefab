@@ -175,6 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4825475034059736}
   - component: {fileID: 114926911975128694}
+  - component: {fileID: 65015069926081946}
   m_Layer: 0
   m_Name: CubeStart
   m_TagString: Untagged
@@ -241,7 +242,6 @@ GameObject:
   - component: {fileID: 4261588649295076}
   - component: {fileID: 33599166500240358}
   - component: {fileID: 23465961866645420}
-  - component: {fileID: 65558667382995410}
   - component: {fileID: 222864699566383236}
   m_Layer: 0
   m_Name: CubeStart
@@ -460,18 +460,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65558667382995410
+--- !u!65 &65015069926081946
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1940697759265562}
+  m_GameObject: {fileID: 1788409788405314}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.7, y: 0.44, z: 1}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!65 &65894473782760062
 BoxCollider:
   m_ObjectHideFlags: 1
