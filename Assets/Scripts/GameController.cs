@@ -63,12 +63,12 @@ public class GameController : UtilComponent {
 	private void Start () {
         this.currentStatus = STATUS_ENUM.START;
 
-        this.eventController.Init(this.CallbackCut, this.context);
+        //this.eventController.Init(this.CallbackCut, this.context);
         this.answerController.Init(this.context, CallbackCut);
         this.sordCotroller.Init(this.context);
 
         //startObject = ResourceLoader.Instance.Create<StartObject>("Prefabs/CubeStart", trStart);
-        startObject.Init("Start");
+        startObject.Init("Start", this.context);
         startObject.cutEvent += CallBackStartCut;
 
         SetActive(this.objCountDown, false);
@@ -110,6 +110,12 @@ public class GameController : UtilComponent {
         //Debug.Log("x:" + this.x.text);
         //Debug.Log("y:" + this.y.text);
         //Debug.Log("z:" + this.z.text);
+        if (Input.GetKey(KeyCode.S))
+        {
+            this.CallBackStartCut("Start");
+            this.context.SetLongSord(false);
+        }
+
         switch(this.currentStatus){
             case STATUS_ENUM.START:
                 this.UpdateStart();
@@ -178,11 +184,13 @@ public class GameController : UtilComponent {
             new ResultModalModel(this.context.correctCount,
                                  this.context.quizCount,
                                  this.context.playTime,
-                                 this.startObject);
+                                 this.startObject,
+                                 this.context);
 
         resultModalPresenter.Show(model);
         this.currentStatus = STATUS_ENUM.SHOW_RESLUT;
         SetActive(this.trStart, true);
+        SetActive(this.objPlay, false);
 
     }
 

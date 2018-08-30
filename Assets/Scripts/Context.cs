@@ -12,6 +12,9 @@ public class Context {
     public int nextAnswer { get; private set; }
     public int[] nextAnswers { get; private set; }
 
+    public int playCount = 0;
+
+
     public int correctCount = 0;
 
     [NonSerialized] public bool isPlay = false;
@@ -39,6 +42,7 @@ public class Context {
         this.nextAnswer = this.currentAnswer;
         this.playTimeWatch = new System.Diagnostics.Stopwatch();
         this.isPlay = false;
+        this.playCount++;
 	}
 
     // Use this for initialization

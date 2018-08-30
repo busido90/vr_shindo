@@ -25,11 +25,11 @@ public class AnswerObjectController : UtilComponent
         answers = new AnswerObject[3];
 
         this.answers[0] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeUp", parentUp);
-        this.answers[0].Init("Up");
+        this.answers[0].Init("Up", this.context);
         this.answers[1] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeLeft", parentLeft);
-        this.answers[1].Init("Left");
+        this.answers[1].Init("Left", this.context);
         this.answers[2] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeRight", parentRight);
-        this.answers[2].Init("Right");
+        this.answers[2].Init("Right", this.context);
 
         Array.ForEach(this.answers, answer => answer.cutEvent += action);
 	}
@@ -69,6 +69,7 @@ public class AnswerObjectController : UtilComponent
  
     private void Update()
     {
+
         if (!this.enableInput) return;
         //Debug.Log(Input.GetKey(KeyCode.A));
         if (Input.GetKey(KeyCode.A))
@@ -99,13 +100,13 @@ public class AnswerObjectController : UtilComponent
 
     IEnumerator WaitNextObj()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
         for (int i = 0; i < this.answers.Length; i++)
         {
             SetActive(this.answers[i].gameObject, false);
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
         if (this.context.isFinalQuiz) {
             this.context.isPlay = false;
