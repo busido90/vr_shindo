@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 4458697117001470}
   - component: {fileID: 114623069563796486}
   - component: {fileID: 65053422106919652}
+  - component: {fileID: 54802729290138416}
   m_Layer: 0
   m_Name: CubeUp
   m_TagString: Untagged
@@ -125,6 +126,7 @@ GameObject:
   - component: {fileID: 222495621868636542}
   - component: {fileID: 65354340700369744}
   - component: {fileID: 114442043144855178}
+  - component: {fileID: 54375316713125292}
   m_Layer: 0
   m_Name: CubeUp
   m_TagString: Untagged
@@ -450,6 +452,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1234129667944650}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54375316713125292
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1366160736699568}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!54 &54802729290138416
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140818129085162}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65053422106919652
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -748,6 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5434da088a84312bf3fceab7ee5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objTutorial: {fileID: 0}
   objCube: {fileID: 1366160736699568}
   objAnimation: {fileID: 1646051171828942}
   childCollider: {fileID: 114442043144855178}

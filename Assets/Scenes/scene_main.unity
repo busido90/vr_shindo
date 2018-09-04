@@ -1190,7 +1190,6 @@ GameObject:
   - component: {fileID: 866107972}
   - component: {fileID: 866107971}
   - component: {fileID: 866107970}
-  - component: {fileID: 866107969}
   m_Layer: 0
   m_Name: Medieval Sward Normal
   m_TagString: Sowrd
@@ -1212,22 +1211,6 @@ Transform:
   m_Father: {fileID: 487249511}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 30}
---- !u!54 &866107969
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 54206103137282140, guid: 126d619cf4daa52469682f85c1378b4a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 866107967}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!64 &866107970
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1729,7 +1712,6 @@ GameObject:
   - component: {fileID: 954674202}
   - component: {fileID: 954674201}
   - component: {fileID: 954674200}
-  - component: {fileID: 954674199}
   m_Layer: 0
   m_Name: Medieval Sward Red
   m_TagString: Sowrd
@@ -1751,22 +1733,6 @@ Transform:
   m_Father: {fileID: 487249511}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 30}
---- !u!54 &954674199
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 54206103137282140, guid: 126d619cf4daa52469682f85c1378b4a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 954674197}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!64 &954674200
 MeshCollider:
   m_ObjectHideFlags: 0
