@@ -1260,31 +1260,6 @@ Prefab:
       propertyPath: objTutorial
       value: 
       objectReference: {fileID: 1307790259}
-    - target: {fileID: 198481658114029116, guid: 02ac5427d82394a1bbb6faed6a1de829,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198930301960640592, guid: 02ac5427d82394a1bbb6faed6a1de829,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198840867356838208, guid: 02ac5427d82394a1bbb6faed6a1de829,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198888511292323552, guid: 02ac5427d82394a1bbb6faed6a1de829,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198891225201696192, guid: 02ac5427d82394a1bbb6faed6a1de829,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02ac5427d82394a1bbb6faed6a1de829, type: 2}
   m_IsPrefabAsset: 0
