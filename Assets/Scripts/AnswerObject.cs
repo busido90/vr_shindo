@@ -14,7 +14,7 @@ public class AnswerObject : StartObject {
         SetLabel(this.txtAnswer, num.ToString());
         this.answer = num;
         SetActive(this.objCube, true);
-        SetActive(this.objAnimation, false); 
+        this.exprosion.Stop();
     }
 
 

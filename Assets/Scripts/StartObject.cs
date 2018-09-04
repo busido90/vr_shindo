@@ -9,7 +9,7 @@ public class StartObject : UtilComponent
     [SerializeField] private GameObject objTutorial;
 
     [SerializeField] protected GameObject objCube;
-    [SerializeField] protected GameObject objAnimation;
+    [SerializeField] protected ParticleSystem exprosion;
     [SerializeField] protected ChildColliderController childCollider;
 
     public Context context;
@@ -22,13 +22,13 @@ public class StartObject : UtilComponent
         this.objName = objName;
         this.context = context;
         SetActive(this.objCube, true);
-        SetActive(this.objAnimation, false);
+        this.exprosion.Stop();
         SetActive(this.objTutorial, this.context.playCount == 0);
     }
 
     public void WasCut(){
         SetActive(this.objCube, false);
-        SetActive(this.objAnimation, true);
+        this.exprosion.Play();
     }
 
     public void OnTriggerEnter(Collider other) {
