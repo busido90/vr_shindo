@@ -31,7 +31,7 @@ public class StartObject : UtilComponent
         this.exprosion.Play();
     }
 
-    public void OnTriggerEnter(Collider other) {
+    public void OnTriggerExit(Collider other) {
         if (other.gameObject.tag == "Sowrd" && this.childCollider.isCutFromOutside && this.context.isLongSord) {
             WasCut();
             cutEvent(this.objName);
