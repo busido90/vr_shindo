@@ -13,7 +13,6 @@ public class AnswerObjectController : UtilComponent
     [SerializeField] private Transform parentUp;
     [SerializeField] private Transform parentLeft;
     [SerializeField] private Transform parentRight;
-    [SerializeField] private Transform trCamera;
 
     private AnswerObject[] answers;
 
@@ -33,7 +32,10 @@ public class AnswerObjectController : UtilComponent
         this.answers[2] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeRight", parentRight);
         this.answers[2].Init("Right", this.context);
 
-        Array.ForEach(this.answers, answer => answer.cutEvent += action);
+        Array.ForEach(this.answers, answer =>{
+            answer.transform.localPosition = new Vector3(0f, 0f, 4f);
+            answer.cutEvent += action;
+        });
 	}
 
 	public void SetAnswers()
@@ -42,36 +44,20 @@ public class AnswerObjectController : UtilComponent
             this.answers[i].SetAnswer(this.context.nextAnswers[i]);
         }
 
-        this.answers[0].transform.localPosition = GetUpPosition();
-        this.answers[1].transform.localPosition = GetLeftPosition();
-        this.answers[2].transform.localPosition = GetRigthPosition();
+        parentUp.localEulerAngles = new Vector3(UnityEngine.Random.Range(-15f, 10f),
+                                                UnityEngine.Random.Range(-12f, 12f),
+                                                0f);
 
-        Array.ForEach(this.answers, answer => {
-            answer.transform.LookAt(trCamera);
-            answer.gameObject.SetActive(true);
-        });
+        parentRight.localEulerAngles = new Vector3(UnityEngine.Random.Range(10f, -30f),
+                                                   UnityEngine.Random.Range(-17f, 50f),
+                                                   0f);
+
+        parentLeft.localEulerAngles = new Vector3(UnityEngine.Random.Range(10f, -30f),
+                                                  UnityEngine.Random.Range(17f, -50f),
+                                                  0f);
+
+        Array.ForEach(this.answers, answer => answer.gameObject.SetActive(true));
         this.enableInput = true;
-    }
-
-    private Vector3 GetUpPosition() {
-        float x = UnityEngine.Random.Range(-1f, 1f);
-        float y = UnityEngine.Random.Range(0f, -1.5f);
-        float z = UnityEngine.Random.Range(-1f, 0f);
-        return new Vector3(x, y, 0);
-    }
-
-    private Vector3 GetRigthPosition(){
-        float x = UnityEngine.Random.Range(-2f, 0f);
-        float y = UnityEngine.Random.Range(0f, 2f);
-        float z = UnityEngine.Random.Range(-2.5f, 0f);
-        return new Vector3(x, y, z);
-    }
-
-    private Vector3 GetLeftPosition(){
-        float x = UnityEngine.Random.Range(0f, 2f);
-        float y = UnityEngine.Random.Range(0f, 1.5f);
-        float z = UnityEngine.Random.Range(-2.5f, -0.5f);
-        return new Vector3(x, y, z);
     }
 
     public void Answer(string objName){
