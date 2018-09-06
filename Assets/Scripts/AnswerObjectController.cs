@@ -13,8 +13,10 @@ public class AnswerObjectController : UtilComponent
     [SerializeField] private Transform parentUp;
     [SerializeField] private Transform parentLeft;
     [SerializeField] private Transform parentRight;
+    [SerializeField] private Transform trCamera;
 
     private AnswerObject[] answers;
+
 
     private bool enableInput = true;
 
@@ -24,6 +26,7 @@ public class AnswerObjectController : UtilComponent
 
         answers = new AnswerObject[3];
 
+        //Vector3 trHMD = InputTracking.GetLocalPosition(XRNode.Head);
         this.answers[0] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeUp", parentUp);
         this.answers[0].Init("Up", this.context);
         this.answers[1] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeLeft", parentLeft);
@@ -36,14 +39,41 @@ public class AnswerObjectController : UtilComponent
 
 	public void SetAnswers()
     {
-        for (int i = 0; i < this.answers.Length; i++)
-        {
+        for (int i = 0; i < this.answers.Length; i++) {
             this.answers[i].SetAnswer(this.context.nextAnswers[i]);
         }
-        Array.ForEach(this.answers, answer => answer.gameObject.SetActive(true));
+
+        this.answers[0].transform.localPosition = GetUpPosition();
+        this.answers[1].transform.localPosition = GetLeftPosition();
+        this.answers[2].transform.localPosition = GetRigthPosition();
+
+        Array.ForEach(this.answers, answer => {
+            answer.transform.LookAt(trCamera);
+            answer.gameObject.SetActive(true);
+        });
         this.enableInput = true;
     }
 
+    private Vector3 GetUpPosition() {
+        float x = UnityEngine.Random.Range(-1f, 1f);
+        float y = UnityEngine.Random.Range(0f, -1.5f);
+        float z = UnityEngine.Random.Range(-1f, 0f);
+        return new Vector3(x, y, 0);
+    }
+
+    private Vector3 GetRigthPosition(){
+        float x = UnityEngine.Random.Range(-2f, 0f);
+        float y = UnityEngine.Random.Range(0f, 2f);
+        float z = UnityEngine.Random.Range(-2.5f, 0f);
+        return new Vector3(x, y, z);
+    }
+
+    private Vector3 GetLeftPosition(){
+        float x = UnityEngine.Random.Range(0f, 2f);
+        float y = UnityEngine.Random.Range(0f, 1.5f);
+        float z = UnityEngine.Random.Range(-2.5f, -0.5f);
+        return new Vector3(x, y, z);
+    }
 
     public void Answer(string objName){
         //Debug.Log(objName);
