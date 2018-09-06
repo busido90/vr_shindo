@@ -36,6 +36,8 @@ public class Context {
     /// <returns><c>true</c>, if final quiz was ised, <c>false</c> otherwise.</returns>
     public bool isFinalQuiz { get { return nextAnswers.All(num => num == this.nextAnswer); } }
 
+    public bool isInvoke = true;
+
 	public void Init()
 	{
         this.currentAnswer = FIRST_NUM;
@@ -118,7 +120,9 @@ public class Context {
         this.playTimeWatch.Stop();
     }
 
-
+    public void SwitchInvoke(){
+        this.isInvoke = !this.isInvoke;
+    }
     //public void SetLeftTime(float leftTime){
     //    this.leftTime -= leftTime;
     //    //TimeSpan ts = new TimeSpan(0,0,Mathf.RoundToInt(this.leftTime));

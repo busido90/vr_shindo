@@ -17,6 +17,9 @@ public class StartObject : UtilComponent
 
     public event Action<string> cutEvent;
 
+    private bool isInvoke = true;
+    private bool isEnter = false;
+
     public void Init(string objName, Context context)
     {
         this.objName = objName;
@@ -31,12 +34,25 @@ public class StartObject : UtilComponent
         this.exprosion.Play();
     }
 
+    public void OnTriggerEnter(Collider other){
+        if(this.context.isInvoke){
+            isEnter = true;
+        }
+    }
+
     public void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "Sowrd" && this.childCollider.isCutFromOutside && this.context.isLongSord) {
+        if (other.gameObject.tag == "Sowrd" && this.isEnter /*&& this.childCollider.isCutFromOutside && this.context.isLongSord*/) {
+            CallSwitchInvoke();
             WasCut();
             cutEvent(this.objName);
             this.context.SetLongSord(false);
+            Invoke("CallSwitchInvoke", 1.5f);
         }
+        this.isEnter = false;
+    }
+
+    private void CallSwitchInvoke(){
+        this.context.SwitchInvoke();
     }
 
 

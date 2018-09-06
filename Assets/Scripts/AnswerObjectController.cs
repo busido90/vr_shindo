@@ -26,7 +26,6 @@ public class AnswerObjectController : UtilComponent
 
         answers = new AnswerObject[3];
 
-        //Vector3 trHMD = InputTracking.GetLocalPosition(XRNode.Head);
         this.answers[0] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeUp", parentUp);
         this.answers[0].Init("Up", this.context);
         this.answers[1] = ResourceLoader.Instance.Create<AnswerObject>("Prefabs/CubeLeft", parentLeft);

@@ -82,6 +82,7 @@ public class GameController : UtilComponent {
         this.startObject.WasCut();
         this.resultModalPresenter.Close();
         StartCoroutine(this.SetCountDown());
+
     }
 
     private void CallbackCut(string objName){
@@ -149,6 +150,8 @@ public class GameController : UtilComponent {
         //this.answerController.Init(this.context);
         this.answerController.SetAnswers();
 
+        CallSwitchInvoke();
+        Invoke("CallSwitchInvoke", 0.5f);
 
         SetActive(this.trStart, false);
         SetActive(this.objCountDown, false);
@@ -163,7 +166,11 @@ public class GameController : UtilComponent {
 
 	}
 
-	private void UpdatePlay(){
+    private void CallSwitchInvoke() {
+        this.context.SwitchInvoke();
+    }
+
+    private void UpdatePlay(){
         if(!this.context.isPlay){
             this.currentStatus = STATUS_ENUM.FINISH;
             return;
